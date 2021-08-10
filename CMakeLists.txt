@@ -106,7 +106,7 @@ string(
   JOIN
   ", "
   CPACK_DEBIAN_PACKAGE_DEPENDS
-  "clang-8"
+  "clang-12"
   "g++"
   "iverilog"
   "libgoogle-glog-dev")

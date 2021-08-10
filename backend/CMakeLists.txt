@@ -1,9 +1,9 @@
 include(FetchContent)
 FetchContent_Declare(
   llvm
-  URL "https://github.com/llvm/llvm-project/archive/llvmorg-8.0.1.tar.gz"
+  URL "https://github.com/llvm/llvm-project/archive/llvmorg-12.0.1.tar.gz"
   URL_HASH
-    "SHA512=6098efa217d6c5fcdf6d6cbc6051020e728bdbf6190ca3d5be90e9fc382b8d666f1649506f7b4b70abff6084481799eba0fb0a44ad82a0bedfab98ee855e8d22"
+    "SHA512=6eb0dc18e2c25935fabfdfc48b0114be0939158dfdef7b85b395fe2e71042672446af0e68750aae003c9847d10d1f63316fe95d3df738d18f249174292b1b9e1"
 )
 
 FetchContent_Declare(

@@ -156,7 +156,7 @@ class Action : public ASTFrontendAction {
  public:
   unique_ptr<ASTConsumer> CreateASTConsumer(CompilerInstance& compiler,
                                             StringRef file) override {
-    return llvm::make_unique<Consumer>(compiler.getASTContext(), funcs_);
+    return std::make_unique<Consumer>(compiler.getASTContext(), funcs_);
   }
 
  private:

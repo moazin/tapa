@@ -6,7 +6,9 @@
 #include <vector>
 
 #include "clang/AST/AST.h"
+#include "clang/Basic/SourceManager.h"
 #include "clang/Lex/Lexer.h"
+#include "llvm/ADT/StringExtras.h"
 
 #include "nlohmann/json.hpp"
 
@@ -610,7 +612,7 @@ void Visitor::ProcessUpperLevelTask(const ExprWithCleanups* task,
 void Visitor::ProcessLowerLevelTask(const FunctionDecl* func) {
   for (const auto param : func->parameters()) {
     vector<string> lines = {""};  // Make sure pragmas start with a new line.
-    auto add_line = [&lines](StringRef line) { lines.push_back(line); };
+    auto add_line = [&lines](StringRef line) { lines.push_back(line.str()); };
     auto add_pragma = [&lines](initializer_list<StringRef> args) {
       lines.push_back("#pragma HLS " + join(args, " "));
     };
