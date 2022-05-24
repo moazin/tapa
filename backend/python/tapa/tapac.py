@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 import argparse
-import io
 import json
 import logging
 import os
@@ -12,6 +11,7 @@ import sys
 from typing import Any, Dict, List, Optional, Tuple
 
 import haoda.backend.xilinx
+import johnnydep
 from absl import flags
 
 import tapa.core
@@ -447,6 +447,23 @@ def parse_steps(args, parser) -> Tuple[bool, str]:
   return all_steps, last_step
 
 
+def check_tapa_version():
+  # filter the verbose log without affecting tapa logger setting
+  with open(os.devnull, "w") as devnull:
+    old_stdout = sys.stdout
+    sys.stdout = devnull
+    dist = johnnydep.JohnnyDist('tapa')
+    curr = dist.version_installed
+    latest = dist.version_latest
+    sys.stdout = old_stdout
+
+  if curr != latest:
+    _logger.warning('Current tapa version different from the latest: %s. '
+                    'check if you need to update tapa', latest)
+  else:
+    _logger.info('tapa already at the latest version: %s', curr)
+
+
 def main(argv: Optional[List[str]] = None):
   argv = sys.argv if argv is None else [sys.argv[0]] + argv
   argv = flags.FLAGS(argv, known_only=True)[1:]
@@ -456,7 +473,7 @@ def main(argv: Optional[List[str]] = None):
 
   tapa.util.setup_logging(args.verbose, args.quiet, args.work_dir)
 
-  _logger.info('tapa version: %s', tapa.__version__)
+  check_tapa_version()
 
   # RTL parsing may require a deep stack
   sys.setrecursionlimit(flags.FLAGS.recursionlimit)
