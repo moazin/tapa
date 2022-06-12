@@ -1,3 +1,5 @@
+`timescale 1 ns / 1 ps
+
 module axi_pipeline #(
   parameter
     C_M_AXI_ID_WIDTH        = 8,

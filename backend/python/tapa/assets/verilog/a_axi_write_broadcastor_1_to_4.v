@@ -1,3 +1,4 @@
+`timescale 1 ns / 1 ps
 
 module a_axi_write_broadcastor_1_to_4 (
   ap_clk,

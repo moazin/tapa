@@ -1,4 +1,5 @@
 `default_nettype none
+`timescale 1 ns / 1 ps
 
 // first-word fall-through (FWFT) FIFO
 module fifo #(
