@@ -1,4 +1,5 @@
 `default_nettype none
+`timescale 1 ns / 1 ps
 
 // Detect burst from address stream.
 module detect_burst #(
